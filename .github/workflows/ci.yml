@@ -192,10 +192,6 @@ jobs:
           fi
           cat "$GITHUB_OUTPUT"
 
-      - name: Install Cap'n Proto
-        run: sudo apt-get update --yes && sudo apt-get install --yes capnproto
-        if: ${{ contains(matrix.platform.runs-on, 'ubuntu')  }}
-
       - name: Install SSL packages (if required)
         run: sudo apt-get update --yes && sudo apt-get install --yes pkg-config openssl libssl-dev
         if: ${{ steps.pre.outputs.features == 'native-tls' }}

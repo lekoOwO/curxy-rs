@@ -1,12 +1,12 @@
 [package]
-name = "curxy"
+name = "curxy-rs"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 axum = "0.8.1"
 clap = { version = "4.5", features = ["derive"] }
-tokio = { version = "1.36", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.36", features = ["macros", "rt-multi-thread", "process"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 url = "2.5"
@@ -15,8 +15,6 @@ anyhow = "1.0"
 tracing = "0.1"
 tracing-subscriber = "0.3"
 tower-http = { version = "0.6.2", features = ["cors"] }
-libcfd = "0.1"
-futures = "0.3"
 reqwest = { version = "0.12", default-features = false, features = ["http2", "json", "charset"] }
 
 [features]

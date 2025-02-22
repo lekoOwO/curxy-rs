@@ -20,6 +20,7 @@ So, we need a proxy worker that can forward the data to the ollama server.
 
 - Rust 1.75+ (install via `rustup`)
 - Ollama server
+- Cloudflared (optional, for public access tunnel)
 
 ## Installation
 
@@ -51,11 +52,17 @@ cargo build --release
    OPENAI_API_KEY=your_openai_api_key curxy
    ```
 
+   If you want to use cloudflared for public access:
+
+   ```bash
+   curxy --cloudflared-path /path/to/cloudflared
+   ```
+
    You will see output like this:
 
    ```
    Starting server on 127.0.0.1:62192
-   Server running at: https://remaining-chen-composition-dressed.trycloudflare.com
+   https://remaining-chen-composition-dressed.trycloudflare.com
    ```
 
 3. Enter the URL provided by curxy (with /v1 appended) into the "Override OpenAI Base URL" section of the cursor editor configuration.
@@ -74,9 +81,9 @@ You can also see help message by running `curxy --help`.
 Options:
   -e, --endpoint <URL>          Ollama server endpoint [default: http://localhost:11434]
   -o, --openai-endpoint <URL>   OpenAI server endpoint [default: https://api.openai.com]
-  -p, --port <PORT>             Server port [default: random]
+  -p, --port <PORT>            Server port [default: random]
       --hostname <HOSTNAME>     Server hostname [default: 127.0.0.1]
-      --cloudflared <BOOL>      Use cloudflared tunnel [default: true]
+      --cloudflared-path <PATH> Path to cloudflared executable
   -h, --help                    Show help message
 ```
 
@@ -84,7 +91,7 @@ Options:
 
 - 🚀 Written in Rust for excellent performance
 - 🔒 Optional API key authentication
-- 🌐 Automatic cloudflared tunnel support
+- 🌐 Support for cloudflared tunneling
 - 🔄 Smart request routing
 - 🛠 Complete error handling
 
