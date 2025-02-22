@@ -1,0 +1,19 @@
+[package]
+name = "curxy"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.8.1", features = ["json"] }
+clap = { version = "4.5", features = ["derive"] }
+tokio = { version = "1.36", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+reqwest = { version = "0.12.12", features = ["json"] }
+url = "2.5"
+regex = "1.10"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+tower-http = { version = "0.6.2", features = ["cors"] }
+cloudflared = "0.0.3" 
