@@ -45,15 +45,9 @@ async fn handle_post(
     headers: HeaderMap,
     Json(payload): Json<Value>,
 ) -> Result<Response<String>, StatusCode> {
-    let model = payload["model"]
-        .as_str()
-        .ok_or(StatusCode::BAD_REQUEST)?;
+    let model = payload["model"].as_str().ok_or(StatusCode::BAD_REQUEST)?;
 
-    let endpoint = util::choose_endpoint(
-        model,
-        &state.ollama_endpoint,
-        &state.openai_endpoint,
-    );
+    let endpoint = util::choose_endpoint(model, &state.ollama_endpoint, &state.openai_endpoint);
 
     // 驗證 API key
     if let Some(api_key) = &state.openai_api_key {
@@ -61,9 +55,8 @@ async fn handle_post(
             .get("Authorization")
             .and_then(|h| h.to_str().ok())
             .unwrap_or("");
-        
-        if !auth_header.starts_with("Bearer ") || 
-           !auth_header.ends_with(api_key) {
+
+        if !auth_header.starts_with("Bearer ") || !auth_header.ends_with(api_key) {
             return Err(StatusCode::UNAUTHORIZED);
         }
     }
@@ -102,4 +95,4 @@ async fn handle_get(
             .await
             .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?,
     ))
-} 
+}

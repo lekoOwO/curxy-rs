@@ -60,7 +60,7 @@ fn validate_url(url: &str) -> Result<String, String> {
 async fn main() -> Result<()> {
     let args = Args::parse();
     let openai_api_key = std::env::var("OPENAI_API_KEY").ok();
-    
+
     let app = proxy::create_app(
         &args.openai_endpoint,
         &args.endpoint,
@@ -69,7 +69,7 @@ async fn main() -> Result<()> {
 
     let port = args.port.unwrap_or(util::get_random_port().await?);
     let addr = format!("{}:{}", args.hostname, port);
-    
+
     if args.cloudflared {
         // 啟動 cloudflared 通道
         tokio::spawn(async move {
@@ -94,4 +94,4 @@ async fn main() -> Result<()> {
     .await?;
 
     Ok(())
-} 
+}
