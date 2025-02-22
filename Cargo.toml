@@ -15,16 +15,9 @@ anyhow = "1.0"
 tracing = "0.1"
 tracing-subscriber = "0.3"
 tower-http = { version = "0.6.2", features = ["cors"] }
-cloudflared = "0.0.3" 
-
-[dependencies.reqwest]
-default-features = false
-features = [
-    "http2",
-    "json",
-    "charset"
-]
-version = "0.12"
+libcfd = "0.1"
+futures = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["http2", "json", "charset"] }
 
 [features]
 default = ["reqwest/rustls-tls"]
